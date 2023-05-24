@@ -118,12 +118,3 @@ function onError(err) {
   loadMoreBtn.hide();
 }
 
-function handleScroll() {
-  const { scrollTop, scrollHeight, clientHeight } = document.documentElement;
-
-  if (scrollTop + clientHeight >= scrollHeight - 5) {
-    fetchData();
-  }
-}
-
-window.addEventListener('scroll', handleScroll);
