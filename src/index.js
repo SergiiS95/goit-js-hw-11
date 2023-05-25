@@ -20,6 +20,7 @@ async function onSubmit(evt) {
 
   if (!value) Notiflix.Report.warning('No value!');
   else {
+    
     newGallery.searchQuery = value;
     newGallery.resetPage();
     gallery.innerHTML = '';
@@ -35,7 +36,7 @@ async function fetchData() {
     const totalHits = Number(data.totalHits);
     const page = newGallery.page - 1;
     const hits = data.hits;
-
+    const totalPage = Math.ceil(500 / newGallery.perPage);
     if (hits.length === 0) {
       Notiflix.Notify.failure(
         'Sorry, there are no images matching your search query. Please try again.'
@@ -45,6 +46,9 @@ async function fetchData() {
     }
     if (page === 1) {
       Notiflix.Notify.success(`"Hooray! We found ${totalHits} images."`);
+    }
+    if (page >= totalPage) {
+      loadMoreBtn.hide();
     }
 
     if (hits.length < 40) {

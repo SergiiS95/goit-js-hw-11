@@ -7,10 +7,13 @@ export default class GalleryImage{
     constructor() {
         this.page = 1;
         this.searchQuery = "";
+        this.perPage = 40;
     }
 
     async getImage () {
-    const { data } = await axios.get(`${URL}?key=${API_KEY}&q=${this.searchQuery}&image_type=photo&orientation=horizontal&safesearch=true&per_page=40&page=${this.page}`);
+    const { data } = await axios.get(
+      `${URL}?key=${API_KEY}&q=${this.searchQuery}&image_type=photo&orientation=horizontal&safesearch=true&per_page=${this.perPage}&page=${this.page}`
+    );
     this.incrementPage();
         return data;
 }
